@@ -24,8 +24,6 @@ ProfitChangeList = ['0']
 csvpath = os.path.join(".", "budget_data.csv")
 output_path = os.path.join(".", "new_budget_data.txt")
 
-BudgetData = "budget_data.csv"
-
 #open file 
 with open(csvpath, newline="") as csvfile:
     
@@ -72,33 +70,27 @@ with open(csvpath, newline="") as csvfile:
         elif ProfitChange1  > GreatestIncrease:
             GreatestIncrease = ProfitChange1
         
-        ProfitChange = ProfitChange1
+        ProfitChange = ProfitChange1 + ProfitChange
         i = i + 1 
 
-#create Profit, loss, and Profit Change dictionaries with month as key - Might not need this, test mode
-MonthLossDict = dict(zip(MonthLoss, Loss))
-MonthProfitDict = dict(zip(MonthProfit, Profit))
+#create Profit Change dictionaries with month as key 
 ProfitChangeDict = dict(zip(ProfitChangeList, Months))
+Average = round((ProfitChange /(csvreader.line_num - 1)), 2)
 
-#Print number of Months In data set
+#Print everything
 print("Financial Analysis")
 print("----------------------")
-Average = round(ProfitChange / csvreader.line_num, 2)
 print("Total Months: %d"%(csvreader.line_num))
-
-#print results for Total Profit
 print(f"Total Profit: ${Profit1}")
-
-#Print Average Change
 print(f"Average Change in Profit: ${Average}")
-
-#Print greatest increase and decrease in profit
 print(f"Greatest increase in profit: {ProfitChangeDict[GreatestIncrease]} ${GreatestIncrease}")
 print(f"Greatest decrease in profit: {ProfitChangeDict[GreatestDecrease]} ${GreatestDecrease}")
 
 #write results to file
 with open(output_path, 'w', newline="") as text_file:
-  
+
+    print("Financial Analysis", file=text_file)
+    print("----------------------", file=text_file)
     print(f"Total Months: %d"%(csvreader.line_num), file=text_file )
     print(f"Total Profit $:{Profit1}", file=text_file)
     print(f"Average Change in Profit: ${Average}", file=text_file)

@@ -1,5 +1,0 @@
-Total Months: 86
-Total Profit $:38382578
-Average Change in Profit: $6196.15
-Greatest increase in profit: Feb-2012 $1926159
-Greatest decrease in profit: Sep-2013 $-2196167
